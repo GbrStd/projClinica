@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/general.html :: headerfiles(title='Página Inicial')"></head>
+<body>
+<header th:insert="fragments/general.html :: navbar"></header>
+
+<section class="bodyInput">
+    <div class="containerWelcome">
+        <div class="logoWelcome">
+            <img alt="Logo" th:src="@{/images/logo.png}">
+        </div>
+        <div class="containerH1Welcome">
+            <h1>Bem-vindo, </h1> <span class="userLogin" th:text="${#authentication.getName()}">Nome</span>
+        </div>
+        <div class="buttonHome">
+            <!--<a class="btnHome" th:href="@{/clinica}">Ver Clínicas</a>-->
+            <a class="btn btn-primary" th:href="@{/clinica}">Ver Clínicas</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

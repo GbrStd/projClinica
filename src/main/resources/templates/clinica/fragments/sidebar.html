@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<body>
+<!--/*@thymesVar id="clinicaId" type="java.lang.Long"*/-->
+<div class="navBarVeticalClinicas" th:fragment="sidebar">
+    <div class="containerNavLinkClinicas">
+        <a class="btn btn-primary" th:href="@{/clinica/{id}(id=${clinicaId})}">Início</a>
+        <a class="btn btn-primary" th:href="@{/clinica/{id}/especialista(id=${clinicaId})}">Especialistas</a>
+        <a class="btn btn-primary" th:href="@{/clinica/{id}/paciente(id=${clinicaId})}">Pacientes</a>
+        <a class="btn btn-primary" th:href="@{/clinica/{id}/consulta(id=${clinicaId})}">Consultas</a>
+    </div>
+</div>
+</body>
+</html>

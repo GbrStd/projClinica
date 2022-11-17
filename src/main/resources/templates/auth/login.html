@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="fragments/general.html :: headerfiles(title='Entrar')"></head>
+<body>
+<header th:insert="fragments/general.html :: navbar"></header>
+<section class="bodyInput">
+    <div class="containerLogin">
+        <div class="alert alert-danger" th:if="${param.error}">
+            Usuário ou senha inválidos.
+        </div>
+        <div class="containerLogoImage">
+            <img alt="Logo" class="logo" th:src="@{/images/logo.png}">
+        </div>
+        <div class="containerInput">
+            <h1 class="titleLogin">Entrar</h1>
+            <form method="post" th:action="@{/login}">
+                <div class="form-row"><input class="inputEdit" name="username" placeholder="Usuário" type="text"></div>
+                <div class="form-row"><input class="inputEdit" name="password" placeholder="Senha" type="password">
+                </div>
+                <div class="form-check">
+                    <label>
+                        <input class="remember" name="remember-me" type="checkbox"/>
+                        Manter conectado
+                    </label>
+                </div>
+                <input class="btnInput inputEdit" type="submit" value="Entrar">
+                <div class="containerRegisterLink">
+                    <a class="linkRegister" th:href="@{/signup}">Registrar-se</a>
+                </div>
+            </form>
+        </div>
+        <div class="alert alert-info" th:if="${param.logout}">
+            Você saiu do sistema.
+        </div>
+    </div>
+</section>
+</body>
+</html>
