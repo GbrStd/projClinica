@@ -1,5 +1,6 @@
 package com.example.clinica.controller;
 
+import com.example.clinica.mail.EmailServiceImpl;
 import com.example.clinica.model.Clinica;
 import com.example.clinica.model.Endereco;
 import com.example.clinica.model.Paciente;
@@ -23,9 +24,12 @@ public class PacienteController {
     private final ClinicaService clinicaService;
     private final PacienteService pacienteService;
 
-    public PacienteController(ClinicaService clinicaService, PacienteService pacienteService) {
+    private final EmailServiceImpl emailService;
+
+    public PacienteController(ClinicaService clinicaService, PacienteService pacienteService, EmailServiceImpl emailService) {
         this.clinicaService = clinicaService;
         this.pacienteService = pacienteService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/clinica/{clinicaId}/paciente")
@@ -98,6 +102,8 @@ public class PacienteController {
 
         status.setComplete();
         session.removeAttribute("currentClinica");
+
+        emailService.sendSimpleMail(paciente.getEmail(), "Cadastro de Paciente", "Olá " + paciente.getNome() + ", seu cadastro foi realizado com sucesso!");
 
         return "redirect:/clinica/" + clinicaId + "/paciente";
     }

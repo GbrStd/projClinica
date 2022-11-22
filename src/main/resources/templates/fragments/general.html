@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <!--/*@thymesVar id="title" type="java.lang.String"*/-->
-<head th:fragment="headerfiles(title)">
+<head th:fragment="headerfiles">
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
@@ -16,7 +16,7 @@
 
     <!--  JS  -->
 
-    <title th:text="${title == null ? T(com.example.clinica.constants.AppInfo).NAME_APP : T(com.example.clinica.constants.AppInfo).NAME_APP + ' - ' + title}"></title>
+    <title th:text="${title == null ? T(com.example.clinica.constants.AppConstants).NAME_APP : T(com.example.clinica.constants.AppConstants).NAME_APP + ' - ' + title}"></title>
 </head>
 <body>
 <div th:fragment="navbar" th:remove="tag">
@@ -47,7 +47,9 @@
 
 </div>
 <div th:fragment="footer">
-
+    <script src="https://code.jquery.com/jquery-3.5.0.js"
+            type="text/javascript"></script>
+    <script th:src="@{/js/script.js}" type="text/javascript"></script>
 </div>
 </body>
 </html>

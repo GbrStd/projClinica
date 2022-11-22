@@ -6,7 +6,7 @@
 }
 
 body {
-    overflow: hidden;
+    overflow: auto;
 }
 
 .bodyInput {
@@ -203,10 +203,6 @@ tbody td ul {
     background-color: rgba(85, 138, 252, 0.3);
 }
 
-.container {
-    padding: 10px 0;
-}
-
 .form-check {
     padding: 0;
     margin: 0;
@@ -291,5 +287,5 @@ tbody td ul {
 }
 
 .myContainerCreateConsulta {
-    width: 500px;
+    min-width: 500px;
 }

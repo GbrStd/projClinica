@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="fragments/general.html :: headerfiles(title='Consulta')"></head>
+<body>
+<header th:insert="fragments/general.html :: navbar"></header>
+
+<div class="container shadow mt-5 bg-light py-5">
+    <p class="h1 myCenter">Visualizar Consulta</p>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <form class="mb-3" th:object="${consulta}">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="especialista">Especialista</label>
+                        <select class="form-control" disabled id="especialista" th:field="*{especialista}">
+                            <option th:selected="${consulta.especialista}" th:text="${consulta.especialista.nome}"
+                                    th:value="${consulta.especialista.id}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="paciente">Paciente</label>
+                        <select class="form-control" disabled id="paciente" th:field="*{paciente}">
+                            <option th:selected="${consulta.paciente}" th:text="${consulta.paciente.nome}"
+                                    th:value="${consulta.paciente.id}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="data">Data</label>
+                    <input class="form-control" id="data" placeholder="Data" readonly th:field="*{data}" type="date">
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea class="form-control" disabled id="descricao" rows="3" th:field="*{descricao}"></textarea>
+                </div>
+                <div class="justify-content-center text-center text-danger" th:if="${errorExams}"
+                     th:text="${errorExams}"></div>
+                <div class="row my-5">
+                    <div class="col">
+                        <p class="h5">Exames</p>
+                        <div class="table-responsive update-exams">
+                            <table class="table w-100">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nome</th>
+                                    <th>Documento</th>
+                                </tr>
+                                </thead>
+                                <tbody class="border-bottom" id="tblExams">
+                                <tr th:each="exame, iter : *{exames}">
+                                    <td th:text="${iter.count}">1</td>
+                                    <td>
+                                        <input class="form-control" id="exameNome"
+                                               placeholder="Nome"
+                                               readonly
+                                               th:field="${consulta.exames[__${iter.index}__].nome}"
+                                               type="text">
+                                    </td>
+                                    <td>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="labelFileUpload">Documento</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input aria-describedby="labelFileUpload" class="custom-file-input"
+                                                       disabled name="fileUpload"
+                                                       onchange="" th:id="'fileUpload'" type="file">
+                                                <label class="custom-file-label" style="overflow: hidden"
+                                                       th:for="'fileUpload'"
+                                                       th:text="${#strings.isEmpty(consulta.exames[__${iter.index}__].fileName) ? 'Escolha um arquivo' : consulta.exames[__${iter.index}__].fileName}"></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-success"
+                                           th:href="@{/exame/download/{id}(id=${consulta.exames[__${iter.index}__].id})}">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-1"></div>
+                <a class="btn btn-danger" th:href="@{/clinica/{id}/consulta(id=${consulta.clinica.id})}">Voltar</a>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="p-5"></div>
+<div th:insert="~{fragments/general.html :: footer}" th:remove="tag"></div>
+</body>
+</html>

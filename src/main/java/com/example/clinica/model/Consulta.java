@@ -7,15 +7,19 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Consulta {
+public class Consulta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,5 +48,8 @@ public class Consulta {
     @JoinColumn(name = "especialista_id", nullable = false)
     @NotNull(message = "Especialista é obrigatório")
     private Especialista especialista;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private @Valid List<Exame> exames = new ArrayList<>(0);
 
 }
