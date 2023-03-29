@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<!--/*@thymesVar id="consultaForm" type="gbrstd.clinica.model.Consulta"*/-->
+<div th:fragment="dynamicExams" th:object="${consultaForm}" th:remove="tag">
+    <tr th:each="exame, iter : *{exames}">
+        <input th:field="${consultaForm.exames[__${iter.index}__].id}" type="hidden">
+        <input th:field="${consultaForm.exames[__${iter.index}__].fileName}"
+               type="hidden">
+        <td th:text="${iter.count}">1</td>
+        <td>
+            <input class="form-control" id="exameNome"
+                   placeholder="Nome"
+                   th:errorclass="is-invalid"
+                   th:field="${consultaForm.exames[__${iter.index}__].nome}" type="text">
+        </td>
+        <td>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="labelFileUpload">Documento</span>
+                </div>
+                <div class="custom-file">
+                    <input aria-describedby="labelFileUpload" class="custom-file-input"
+                           name="fileUpload" onchange=""
+                           th:id="'fileUpload'" type="file">
+                    <label class="custom-file-label" style="overflow: hidden"
+                           th:for="'fileUpload'"
+                           th:text="${#strings.isEmpty(consultaForm.exames[__${iter.index}__].fileName) ? 'Escolha um arquivo' : consultaForm.exames[__${iter.index}__].fileName}"></label>
+                </div>
+            </div>
+        </td>
+        <td>
+            <button class="btn btn-sm btn-danger"
+                    data-update-exams-url="/consulta/removeExame"
+                    name="removeExame" th:value="${iter.index}"
+                    type="button">
+                <i class="fas fa-trash"></i>
+            </button>
+        </td>
+    </tr>
+</div>
+</html>

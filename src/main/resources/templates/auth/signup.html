@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="fragments/general.html :: headerfiles(title='Registrar')"></head>
+<body>
+<header th:insert="fragments/general.html :: navbar"></header>
+<section class="bodyInput">
+    <div class="containerLogin">
+        <div class="containerLogoImage">
+            <img alt="Logo" class="logo" th:src="@{/images/logo.png}">
+        </div>
+        <div class="containerInput">
+            <h1 class="titleLogin">Cadastro</h1>
+            <form method="post" th:action="@{/signup}" th:object="${signUpForm}">
+                <div class="form-row">
+                    <input class="inputEdit" name="username" placeholder="Usuário"
+                           th:field="*{username}"
+                           type="text">
+                </div>
+                <div class="form-row">
+                    <input class="inputEdit" name="password" placeholder="Senha"
+                           th:field="*{password}"
+                           type="password">
+                </div>
+                <div class="form-row">
+                    <input class="inputEdit" name="confirmPassword" placeholder="Confirmar Senha"
+                           th:field="*{confirmPassword}"
+                           type="password">
+                </div>
+                <ul class="alert alert-danger list-type-x" th:if="${#fields.hasErrors()}">
+                    <li class="dangerTxt" th:each="error : ${#fields.errors()}" th:text="${error}"></li>
+                </ul>
+                <input class="btnInput inputEdit" type="submit" value="Cadastrar">
+                <div class="containerRegisterLink">
+                    <a class="linkRegister" th:href="@{/login}">Já tenho uma conta.</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

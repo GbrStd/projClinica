@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="fragments/general.html :: headerfiles(title='Clínica')"></head>
+<body>
+<header th:insert="fragments/general.html :: navbar"></header>
+
+<div class="d-flex">
+
+    <div th:insert="~{clinica/fragments/sidebar.html :: sidebar(clinicaId=${clinica.id})}" th:remove="tag"></div>
+
+    <div class="containerShowClinicas">
+        <div class="showClinicas">
+            <div class="containerContentShow">
+                <div class="containerLogoShowClinica">
+                    <img src="/images/logo.png">
+                </div>
+                <div class="containerTextShowClinica">
+                    <p th:text="${clinica.nome}"></p>
+                    <p><span th:text="${clinica.consultas.size()}"></span> Consultas</p>
+                    <p><span th:text="${clinica.especialistas.size()}"></span> Especialistas</p>
+                    <p><span th:text="${clinica.pacientes.size()}"></span> Pacientes</p>
+                </div>
+                <div class="iconBack">
+                    <a th:href="@{/clinica}"><i aria-hidden="true" class="fa fa-arrow-left"></i> Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

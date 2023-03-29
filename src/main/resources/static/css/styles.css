@@ -1,0 +1,291 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body {
+    overflow: auto;
+}
+
+.bodyInput {
+    height: 95vh;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerLogoImage {
+    text-align: center;
+}
+
+.logo {
+    width: 200px;
+}
+
+.containerLogin {
+    height: auto;
+    width: 500px;
+    padding: 10px;
+
+}
+
+.containerInput {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(85, 138, 252);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.titleLogin {
+    color: white;
+}
+
+.containerInput form .inputEdit {
+    display: block;
+    width: 100%;
+    height: 35px;
+    box-sizing: border-box;
+    margin: 10px 0 10px 0;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+
+.containerInput {
+    display: flex;
+    justify-content: center;
+}
+
+.btnInput {
+    width: 100%;
+    background-color: #004AAD;
+    color: white;
+    cursor: pointer;
+}
+
+.linkRegister {
+    color: white;
+    font-size: 12px;
+    display: inline-flex;
+}
+
+.containerRegisterLink {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dangerTxt {
+    color: rgb(194, 13, 13);
+    font-size: 14px;
+    font-weight: bolder;
+    margin-left: 16px;
+}
+
+header nav .navLogo a {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+}
+
+header nav {
+    background-color: #004bad;
+    padding: 10px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.linkNav a {
+    text-decoration: none;
+    color: white;
+    padding: 0 20px;
+}
+
+.linkNav {
+    display: flex;
+    align-items: center;
+}
+
+.linkNav span {
+    color: white;
+}
+
+.logoWelcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerH1Welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.containerH1Welcome h1 {
+    color: #004AAD;
+}
+
+.containerH1Welcome span {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.btnHome {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #004AAD;
+    border-radius: 5px;
+}
+
+.buttonHome {
+    text-align: center;
+    height: auto;
+    padding: 10px 0px;
+}
+
+tbody td ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.containerTables {
+    width: auto;
+    height: 80vh;
+    overflow: auto;
+}
+
+.containerHeaderTables {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.myBtn {
+    text-decoration: underline;
+    padding: 0px 5px;
+}
+
+.myInput {
+    background-color: transparent;
+    border: none;
+}
+
+.myInput:hover {
+    background-color: transparent;
+}
+
+.green {
+    color: green;
+
+}
+
+.red {
+    color: red;
+}
+
+.table-hover-blue > tbody tr:hover td {
+    background-color: rgba(85, 138, 252, 0.3);
+}
+
+.form-check {
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+.list-type-x {
+    list-style-type: "ˣ ";
+}
+
+.navBarVeticalClinicas {
+    background-color: #004AAD;
+    width: 13%;
+    padding: 10px;
+    height: 100vh;
+}
+
+.containerNavLinkClinicas {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerNavLinkClinicas a {
+    margin: 10px;
+}
+
+.containerShowClinicas {
+    width: 87%;
+    padding-top: 20px;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerLogoShowClinica img {
+    width: 200px;
+
+}
+
+.containerLogoShowClinica {
+    padding: 5px;
+}
+
+.containerLogoShowClinica {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerTextShowClinica {
+    text-align: center;
+}
+
+.myCenter {
+    text-align: center;
+}
+
+.containerNavLinkClinicas a:first-child {
+    color: white;
+}
+
+.invalid {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: .875em;
+    color: #dc3545
+}
+
+.containerTextShowClinica {
+    padding: 10px;
+    width: 300px;
+    background-color: rgb(85, 138, 252);
+    color: white;
+    border-radius: 5px;
+}
+
+.iconBack {
+    text-align: center;
+    width: 300px;
+    padding: 5px;
+}
+
+.myContainerCreateConsulta {
+    min-width: 500px;
+}

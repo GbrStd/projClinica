@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="fragments/general.html :: headerfiles(title='Consultas')"></head>
+<body>
+<header th:insert="fragments/general.html :: navbar"></header>
+
+<div class="container shadow mt-5 bg-light py-5">
+    <p class="h1 myCenter">Editar Consulta</p>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <form class="mb-3" enctype="multipart/form-data" method="post" th:action="@{edit}"
+                  th:object="${consultaForm}">
+                <input th:field="*{id}" type="hidden">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="especialista">Especialista</label>
+                        <select class="form-control" id="especialista" th:field="*{especialista}">
+                            <option th:each="especialista : ${especialistas}" th:text="${especialista.nome}"
+                                    th:value="${especialista.id}"></option>
+                        </select>
+                        <div class="invalid" th:errors="*{especialista}"></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="paciente">Paciente</label>
+                        <select class="form-control" id="paciente" th:field="*{paciente}">
+                            <option th:each="paciente : ${pacientes}" th:text="${paciente.nome}"
+                                    th:value="${paciente.id}"></option>
+                        </select>
+                        <div class="invalid" th:errors="*{paciente}"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="data">Data</label>
+                    <input class="form-control" id="data" placeholder="Data" th:errorclass="is-invalid"
+                           th:field="*{data}" type="date">
+                    <div class="invalid-feedback" th:errors="*{data}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea class="form-control" id="descricao" rows="3" th:errorclass="is-invalid"
+                              th:field="*{descricao}"></textarea>
+                    <div class="invalid-feedback" th:errors="*{descricao}"></div>
+                </div>
+                <div class="justify-content-center text-center text-danger" th:if="${errorExams}"
+                     th:text="${errorExams}"></div>
+                <div class="row my-5">
+                    <div class="col">
+                        <p class="h5">Exames</p>
+                        <div class="table-responsive update-exams">
+                            <table class="table w-100">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nome</th>
+                                    <th>Documento</th>
+                                    <th>
+                                        <button class="btn btn-sm btn-success"
+                                                data-update-exams-url="/consulta/addExame"
+                                                name="addExame"
+                                                type="button">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="border-bottom" id="tblExams">
+                                <tr th:replace="~{consulta/fragments/dynamicExams :: dynamicExams(consultaForm=${consultaForm})}"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-1"></div>
+                <button class="btn btn-primary" type="submit">Editar</button>
+                <a class="btn btn-danger" th:href="@{/clinica/{id}/consulta(id=${clinicaId})}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="p-5"></div>
+<div th:insert="~{fragments/general.html :: footer}" th:remove="tag"></div>
+</body>
+</html>

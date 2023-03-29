@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="fragments/general.html :: headerfiles(title='Clínicas')"></head>
+<body>
+<header th:insert="fragments/general.html :: navbar"></header>
+
+<div class="container">
+    <p class="h1 myCenter">Editar Clínica</p>
+    <div class="row justify-content-center">
+        <form method="post" th:action="@{/clinica/{id}/edit(id=${clinicaForm.id})}" th:object="${clinicaForm}">
+            <input th:field="*{endereco.id}" type="hidden">
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="nome">Nome</label>
+                    <input class="form-control" id="nome"
+                           placeholder="Nome" th:errorclass="is-invalid"
+                           th:field="*{nome}" type="text">
+                    <div class="invalid-feedback" th:errors="*{nome}"></div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label" for="especialidade">Especialidade</label>
+                    <input class="custom-select custom-select-sm"
+                           list="especialidade" placeholder="Pesquisar..."
+                           th:errorclass="is-invalid"
+                           th:field="${especialidadeForm.descricao}" th:value="${especialidadeForm.descricao}"
+                           type="text">
+                    <datalist id="especialidade"
+                              th:field="*{especialidade}">
+                        <option th:each="esp : ${especialidades}"
+                                th:selected="${esp.descricao == especialidadeForm}"
+                                th:value="${esp.descricao}"></option>
+                    </datalist>
+                    <div class="invalid-feedback" th:errors="${especialidadeForm.descricao}"></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="telefone">Telefone</label>
+                    <input class="form-control" id="telefone"
+                           placeholder="Telefone" th:errorclass="is-invalid"
+                           th:field="*{telefone}"
+                           type="number">
+                    <div class="invalid-feedback" th:errors="*{telefone}"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" id="email"
+                       placeholder="exemplo@teste.com"
+                       th:errorclass="is-invalid" th:field="*{email}"
+                       type="email">
+                <div class="invalid-feedback" th:errors="*{email}"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="logradouro">Endereço</label>
+                    <input class="form-control"
+                           id="logradouro" placeholder="Rua..."
+                           th:errorclass="is-invalid"
+                           th:field="*{endereco.logradouro}"
+                           type="text">
+                    <div class="invalid-feedback" th:errors="*{endereco.logradouro}"></div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="bairro">Bairro</label>
+                    <input class="form-control" id="bairro"
+                           placeholder="Bairro" th:errorclass="is-invalid"
+                           th:field="*{endereco.bairro}" type="text">
+                    <div class="invalid-feedback" th:errors="*{endereco.bairro}"></div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="numero">Número</label>
+                    <input class="form-control" id="numero"
+                           placeholder="1234" th:errorclass="is-invalid"
+                           th:field="*{endereco.numero}" type="number">
+                    <div class="invalid-feedback" th:errors="*{endereco.numero}"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="cidade">Cidade</label>
+                    <input class="form-control" id="cidade"
+                           th:errorclass="is-invalid" th:field="*{endereco.cidade}"
+                           type="text">
+                    <div class="invalid-feedback" th:errors="*{endereco.cidade}"></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="estado">Estado</label>
+                    <input class="form-control" id="estado"
+                           th:errorclass="is-invalid" th:field="*{endereco.estado}"
+                           type="text">
+                    <div class="invalid-feedback" th:errors="*{endereco.estado}"></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="pais">Pais</label>
+                    <input class="form-control" id="pais"
+                           th:errorclass="is-invalid" th:field="*{endereco.pais}"
+                           type="text">
+                    <div class="invalid-feedback" th:errors="*{endereco.pais}"></div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="cep">CEP</label>
+                    <input class="form-control" id="cep"
+                           th:errorclass="is-invalid"
+                           th:field="*{endereco.cep}"
+                           type="text">
+                    <div class="invalid-feedback" th:errors="*{endereco.cep}"></div>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Salvar</button>
+            <a class="btn btn-danger" th:href="@{/clinica}">Cancelar</a>
+        </form>
+    </div>
+</div>
+<div th:insert="fragments/general.html :: footer"></div>
+
+</body>
+</html>

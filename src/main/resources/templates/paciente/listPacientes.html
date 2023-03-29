@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="fragments/general.html :: headerfiles(title='Pacientes')"></head>
+<body>
+<header th:insert="fragments/general.html :: navbar"></header>
+
+<div class="d-flex">
+    <div th:insert="~{clinica/fragments/sidebar.html :: sidebar(clinicaId=${clinicaId})}" th:remove="tag"></div>
+
+    <div class="container">
+        <div class="containerHeaderTables">
+            <h1>Pacientes</h1>
+            <a class="btn btn-primary" th:href="@{paciente/create}">Criar Paciente</a>
+        </div>
+        <div class="containerTables">
+            <table class="table table-striped table-hover-blue">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Data de nascimento</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${pacientes.isEmpty()}">
+                    <td colspan="5">Nenhum paciente cadastrado</td>
+                </tr>
+                <tr th:each="paciente : ${pacientes}">
+                    <td th:text="${paciente.nome}"></td>
+                    <td th:text="${paciente.telefone}"></td>
+                    <td th:text="${paciente.email}"></td>
+                    <td th:text="${#dates.format(paciente.dataNasci, 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a class="myBtn blue" th:href="@{/paciente/{id}/edit(id=${paciente.id})}">Editar</a>
+                            </li>
+                            <li>
+                                <form method="post" th:action="@{/paciente/{id}/delete(id=${paciente.id})}">
+                                    <input class="myBtn myInput red" type="submit" value="Excluir">
+                                </form>
+                            </li>
+                        </ul>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

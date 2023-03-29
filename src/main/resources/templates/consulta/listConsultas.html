@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="fragments/general.html :: headerfiles(title='Consultas')"></head>
+<body>
+<header th:insert="fragments/general.html :: navbar"></header>
+
+<div class="d-flex">
+    <div th:insert="~{clinica/fragments/sidebar.html :: sidebar(clinicaId=${clinicaId})}" th:remove="tag"></div>
+
+    <div class="container">
+        <div class="containerHeaderTables">
+            <h1>Consultas</h1>
+            <a class="btn btn-primary" th:href="@{consulta/create}">Criar Consulta</a>
+        </div>
+        <div class="containerTables">
+            <table class="table table-striped table-hover-blue">
+                <thead>
+                <tr>
+                    <th>Especialista</th>
+                    <th>Paciente</th>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${consultas.isEmpty()}">
+                    <td colspan="5">Nenhuma consulta criada</td>
+                </tr>
+                <tr th:each="consulta : ${consultas}">
+                    <td th:text="${consulta.especialista.nome}"></td>
+                    <td th:text="${consulta.paciente.nome}"></td>
+                    <td th:text="${consulta.descricao}"></td>
+                    <td th:text="${#dates.format(consulta.data, 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a class="myBtn green" th:href="@{/consulta/{id}(id=${consulta.id})}">Visualizar</a>
+                            </li>
+                            <li>
+                                <a class="myBtn blue" th:href="@{/consulta/{id}/edit(id=${consulta.id})}">Editar</a>
+                            </li>
+                            <li>
+                                <form method="post" th:action="@{/consulta/{id}/delete(id=${consulta.id})}">
+                                    <input class="myBtn myInput red" type="submit" value="Excluir">
+                                </form>
+                            </li>
+                        </ul>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
